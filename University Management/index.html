@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body, h2, p, form, input, button, label, a {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('uni-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .login-box {
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            color: #3447b6;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 1rem;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border: 2px solid #cfd1dd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #5c6bc0;
+            box-shadow: 0 0 5px rgba(92, 107, 192, 0.5);
+        }
+
+        button {
+            background: #3f51b5;
+            color: #ffffff;
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #5c6bc0;
+        }
+
+        #text {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        #text a {
+            color: #3f51b5;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        #text a:hover {
+            color: #5c6bc0;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #3f51b5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="button" onclick="validateLogin()">Login</button>
+                <div class="message" id="message"></div>
+            </form>
+        </div>
+        <div class="footer">© 2024 University Management System</div>
+    </div>
+    <script>
+        function validateLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const messageDiv = document.getElementById("message");
+            messageDiv.textContent = ""; // Clear previous messages
+
+            // Admin credentials
+            const adminUsername = "admin"; // Change this to your actual admin username
+            const adminPassword = "admin123"; // Change this to your actual admin password
+
+            // Check for admin credentials
+            if (username === adminUsername && password === adminPassword) {
+                // Redirect to the admin dashboard
+                window.location.href = "adminDashboard.html"; // Change this to your actual admin dashboard page
+                return;
+            }
+
+            // Retrieve the student record from localStorage
+            const studentData = localStorage.getItem(`student_${username}`);
+
+            if (studentData) {
+                const studentRecord = JSON.parse(studentData);
+                const expectedPassword = `pass${studentRecord.id}`; // Generate expected password based on ID
+
+                // Check if the provided password matches the expected one
+                if (password === expectedPassword) {
+                    // Redirect to the student dashboard instead of the student record page
+                    window.location.href = "studentDashboard.html"; // Redirect to the student dashboard
+                    return;
+                }
+            }
+
+            // If we reach here, it means the login was unsuccessful
+            messageDiv.textContent = "Invalid username or password. Please try again.";
+        }
+    </script>
+</body>
+</html>
