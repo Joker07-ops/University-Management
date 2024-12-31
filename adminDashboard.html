@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+    background-image: url('uni-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #3447b6;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            background-color: #3447b6;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2575fc;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <button onclick="window.location.href='addRecord.html'">Add Student Records</button>
+        <button onclick="window.location.href='viewRecord.html'">View Student Records</button>
+        <div class="footer">© 2024 University Management System</div>
+    </div>
+</body>
+</html>

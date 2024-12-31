@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student Records</title>
+    <style>
+        body {
+    background-image: url('uni-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #3447b6;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #3447b6;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 6px;
+            background-color: #3447b6;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2575fc;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add Student Records</h2>
+        <form id="addStudentForm" onsubmit="return false;">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="id">ID:</label>
+            <input type="text" id="id" required>
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            <label for="email">Email:</label>
+            <input type="text" id="email" required>
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" required>
+            <label for="PF">PF Marks:</label>
+            <input type="number" id="PF" required>
+            <label for="ICT">ICT Marks:</label>
+            <input type="number" id="ICT" required>
+            <label for="DS">DS Marks:</label>
+            <input type="number" id="DS" required>
+            <label for="FE">FE Marks:</label>
+            <input type="number" id="FE" required>
+            <label for="calculus">Calculus  Marks:</label>
+            <input type="number" id="calculus" required>
+            <button type="button" onclick="addStudentRecord()">Add Record</button>
+        </form>
+        <div class="footer">© 2024 University Management System</div>
+    </div>
+
+    <script>
+        function addStudentRecord() {
+            const name = document.getElementById("name").value;
+            const id = document.getElementById("id").value;
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const PF = document.getElementById("PF").value;
+            const ICT = document.getElementById("ICT").value;
+            const DS = document.getElementById("DS").value;
+            const FE = document.getElementById("FE").value;
+            const Calculus = document.getElementById("calculus").value;
+
+            const studentRecord = {
+                name,
+                id,
+                username,
+                email,
+                phoneNumber,
+                marks: {
+                   PF: PF,
+                    ICT: ICT,
+                    DS: DS,
+                    FE: FE,
+                    Calculus: Calculus,
+                }
+            };
+
+            localStorage.setItem(`student_${username}`, JSON.stringify(studentRecord));
+            alert("Student record added successfully!");
+            document.getElementById("addStudentForm").reset();
+        }
+    </script>
+</body>
+</html>
